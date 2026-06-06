@@ -13,6 +13,8 @@ services:
       - "9000:9000"
     env_file:
       - ./hadoop.env
+    volumes:
+      - ./Students_Data:/Students_Data
     networks:
       - bigdata-net
 
@@ -26,6 +28,8 @@ services:
       - namenode
     env_file:
       - ./hadoop.env
+    volumes:
+      - ./Students_Data:/Students_Data
     networks:
       - bigdata-net
 
@@ -56,6 +60,8 @@ services:
       - namenode
       - datanode
       - zookeeper
+    volumes:
+      - ./Students_Data:/Students_Data
     networks:
       - bigdata-net
 
@@ -87,7 +93,7 @@ services:
     environment:
       - SPARK_MASTER_HOST=spark-master
     volumes:
-      - ./data:/data
+      - ./Students_Data:/Students_Data
     networks:
       - bigdata-net
 
@@ -106,7 +112,7 @@ services:
       - SPARK_WORKER_CORES=2
       - SPARK_WORKER_MEMORY=2G
     volumes:
-      - ./data:/data
+      - ./Students_Data:/Students_Data
     networks:
       - bigdata-net
 
@@ -121,7 +127,7 @@ services:
     depends_on:
       - spark-master
     volumes:
-      - ./data:/data
+      - ./Students_Data:/Students_Data
     networks:
       - bigdata-net
 
